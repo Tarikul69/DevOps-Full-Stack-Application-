@@ -4,7 +4,18 @@
   become: yes
 
   tasks:
+   -name: Make Directory
+    ansible.builtin.file:
+      path: "/Desktop/task01"
+      state: Directory
+
    - name: Install Git
-     apt: 
-       name: Git
+     ansible.builtin.package:
+       name: git
        state: present
+
+   - name: Clone Repo
+     ansible.builtin.git:
+        repo: "https://github.com/Tarikul69/DevOps-Full-Stack-Application-.git"
+        dest: "/Desktop/task01"
+        version: "main"
